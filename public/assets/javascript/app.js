@@ -52,3 +52,32 @@ $(document).on("click", "p", function(){
     });
 });
 
+// at on click of savenote button //
+$(document).on("click", "#savenote", function(){
+
+    // grab article id from submit button //
+    var thisID = $(this).attr("data-id");
+
+    // run post request to change note using eneted input //
+    $.ajax({
+        method: "POST",
+        url: "/articles" + thisID,
+        data: {
+            title: $("#titleinput").val(),
+            body: $("#bodyinput").val()
+        }
+    })
+    .then(function(data){
+
+        //log response //
+        console.log(data);
+
+        //empty notes section //
+        $("#notes").empty();
+    });
+
+    // remove values entered in input and text area for note entry //
+    $("#titleinput").val("");
+    $("#bodyinput").val("");
+});
+
