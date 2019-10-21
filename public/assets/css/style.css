@@ -1,0 +1,12 @@
+head, body {
+font-family: 'Lobster', cursive;
+};
+
+h1 {
+    font-size: 250px;
+}
+.jumbotron {
+    background-image: url("../images/bg.jpg");
+    background-size: cover;
+    text-align: center;
+};
