@@ -33,20 +33,20 @@ app.get("/", function(req, res) {
 app.get("/scrape", function(req, res){
 
     // grab body of html with axios //
-    axios.get("http://www.nytimes.com/").then(function(response){
+    axios.get("http://www.echojs.com").then(function(response){
 
         // load into cheerio and save it to $ for shorthand selector //
         var $ = cheerio.load(response.data);
 
         // grab every article tag //
-        $("article").each(function (i, element){
+        $("article h2").each(function (i, element){
 
             // save in empty result object ..
             var result = {};
 
             // add text and href of every link, save them as properties of result object //
-            result.title = $(this).children("h2").text();
-            result.link = $(this).children("a").attr("href");
+            result.title = $(this).find("a").text().trim();
+            result.link = $(this).find("a").attr("href");
 
             // create new article using 'result' object built from scraping //
             db.Article.create(result)
