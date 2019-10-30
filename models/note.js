@@ -1,20 +1,16 @@
-var mongoose = require("mongoose");
+var mongoose = require('mongoose');
 
-//ref to schema constructor //
 var Schema = mongoose.Schema;
 
-// create new noteschema obj using schema constructor //
-var NoteSchema = new Schema({
-    
-    // 'title' is string type //
-    title: String,
-    
-    // 'body' is string type //
-    body: String
+var noteSchema = new Schema ({
+    _headlineID: {
+        type: Schema.Types.ObjectId,
+        ref: "Headline"
+    },
+    date: String,
+    noteText: String
 });
 
-// creates model from above schema using mongoose's model method //
-var Note = mongoose.model("Note", NoteSchema);
+var Note = mongoose.model("Note", noteSchema);
 
-// exports note model //
 module.exports = Note;
