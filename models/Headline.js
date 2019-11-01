@@ -8,6 +8,12 @@ var headlineSchema = new Schema ({
         required: true,
         unique: true
     },
+    summary: {
+        type: String,
+        required: true
+    },
+    date: String,
+    link: String,
     saved: {
         type: Boolean,
         default: false
